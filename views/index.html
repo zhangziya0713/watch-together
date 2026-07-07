@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>放映厅 · 玫瑰影院</title>
+<link rel="stylesheet" href="/style.css" />
+</head>
+<body class="cinema-body">
+
+<div class="cinema-stage" id="room-screen">
+
+  <!-- 银幕顶部工具条:麦克风/退出/房间号/片库/视频源/在场的人,全部小图标按钮 -->
+  <div class="cinema-topbar">
+    <button id="mic-toggle" class="icon-btn" title="开启/关闭麦克风">🎤</button>
+    <span id="room-code-display" class="mini-room-code"></span>
+    <button id="copy-link-btn" class="icon-btn" title="复制邀请链接">🔗</button>
+    <button id="open-library-btn" class="icon-btn" title="从片库选择">📚</button>
+    <button id="open-source-btn" class="icon-btn" title="视频源(粘贴链接/上传)">➕</button>
+    <button id="toggle-participants-btn" class="icon-btn" title="在场的人">👥<span id="participant-count-badge">1</span></button>
+    <button id="logout-btn" class="icon-btn" title="退出登录">⏻</button>
+  </div>
+
+  <!-- 在场的人:折叠面板 -->
+  <div id="participants-panel" class="dropdown-panel" style="display:none;">
+    <ul id="participant-list" class="participant-list"></ul>
+  </div>
+
+  <!-- 视频区域,占据银幕的位置 -->
+  <div class="cinema-screen-box player-screen-box">
+    <div class="player-frame">
+      <div id="player-mount"></div>
+      <div id="player-placeholder" class="player-placeholder">
+        <p id="placeholder-text">等待视频加载...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 聊天区,透明背景,固定在银幕下方,只有这个区域自己能滚动 -->
+  <div class="chat-block-transparent">
+    <div id="chat-log" class="chat-log-transparent"></div>
+    <div class="chat-input-row-transparent">
+      <input id="chat-input" type="text" placeholder="说点什么..." />
+      <button id="chat-send-btn" class="chat-send-transparent">发送</button>
+    </div>
+  </div>
+</div>
+
+<!-- 视频源选择弹窗(房主专属:YouTube/直链/上传) -->
+<div id="source-modal" class="modal-overlay" style="display:none;">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h2>选择视频源</h2>
+      <button id="close-source-btn" class="btn-ghost">✕</button>
+    </div>
+    <div class="host-controls" id="host-controls">
+      <div class="source-row">
+        <input id="yt-url-input" type="text" placeholder="粘贴 YouTube 链接..." />
+        <button id="yt-load-btn" class="btn-secondary">加载</button>
+      </div>
+      <div class="source-row">
+        <input id="direct-url-input" type="text" placeholder="粘贴直接视频文件链接(.mp4/.webm 结尾)..." />
+        <button id="direct-load-btn" class="btn-secondary">加载</button>
+      </div>
+      <div class="source-row">
+        <input id="upload-input" type="file" accept="video/*" />
+        <button id="upload-btn" class="btn-secondary">上传并播放</button>
+      </div>
+      <p id="upload-status" class="upload-status"></p>
+      <p class="host-note">网页链接(B站/腾讯视频等)浏览器技术上无法程序控制进度,建议用直接文件链接或上传视频文件。</p>
+    </div>
+    <p id="guest-wait-note" class="host-note" style="display:none;">只有房主能选择视频源。</p>
+  </div>
+</div>
+
+<!-- 片库选择弹窗 -->
+<div id="library-modal" class="modal-overlay" style="display:none;">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h2>从片库选择</h2>
+      <button id="close-library-btn" class="btn-ghost">✕</button>
+    </div>
+    <div id="library-modal-grid" class="library-grid"></div>
+  </div>
+</div>
+
+<!-- 远端语音音轨挂载点(不可见) -->
+<div id="audio-sinks" style="display:none;"></div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://www.youtube.com/iframe_api"></script>
+<script src="/client.js"></script>
+</body>
+</html>

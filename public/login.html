@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>登录 · 玫瑰影院</title>
+<link rel="stylesheet" href="/style.css" />
+</head>
+<body class="cinema-body">
+<div class="cinema-stage" id="login-screen">
+  <div class="cinema-title">欢迎来到玫瑰影院</div>
+
+  <div class="cinema-screen-box">
+    <div class="cinema-form">
+      <div class="cinema-field">
+        <label>账号</label>
+        <input id="login-username" type="text" autocomplete="username" />
+      </div>
+      <div class="cinema-field">
+        <label>密码</label>
+        <input id="login-password" type="password" autocomplete="current-password" />
+      </div>
+      <div class="cinema-field">
+        <label>名称</label>
+        <input id="join-name" type="text" maxlength="16" />
+      </div>
+      <div class="cinema-field">
+        <label>房间号</label>
+        <input id="join-room" type="text" maxlength="12" placeholder="留空=创建新房间" />
+      </div>
+      <button id="login-btn" class="cinema-enter-btn">进入影厅</button>
+      <p class="cinema-hint" id="login-hint"></p>
+    </div>
+  </div>
+</div>
+<script src="/login.js"></script>
+</body>
+</html>
