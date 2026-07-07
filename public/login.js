@@ -18,7 +18,7 @@ async function doLogin() {
   if (!name) { hint.textContent = '请输入你的名称'; return; }
 
   hint.textContent = '';
-  loginBtn.disabled = true;
+  loginBtn.style.pointerEvents = 'none';
   loginBtn.textContent = '进入中...';
   try {
     const res = await fetch('/api/login', {
@@ -29,7 +29,7 @@ async function doLogin() {
     const data = await res.json();
     if (!res.ok) {
       hint.textContent = data.error || '登录失败';
-      loginBtn.disabled = false;
+      loginBtn.style.pointerEvents = 'auto';
       loginBtn.textContent = '进入影厅';
       return;
     }
@@ -46,7 +46,7 @@ async function doLogin() {
     location.href = data.redirect || '/';
   } catch (e) {
     hint.textContent = '网络错误,请重试';
-    loginBtn.disabled = false;
+    loginBtn.style.pointerEvents = 'auto';
     loginBtn.textContent = '进入影厅';
   }
 }
