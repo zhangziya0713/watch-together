@@ -499,49 +499,59 @@ input[type="text"]::placeholder { color: #666a78; }
   align-items: center;
 }
 
+/* 登录页专属:比放映厅的银幕框更小、更靠中心 */
+.login-screen-box {
+  left: 26%;
+  right: 26%;
+  top: 22%;
+  bottom: 46%;
+}
+
 /* ---------- 登录表单:直接"写"在银幕上 ---------- */
 .cinema-form {
   width: 100%;
-  max-width: 320px;
+  max-width: 200px;
   display: flex;
   flex-direction: column;
-  gap: 3%;
+  gap: 5%;
 }
-.cinema-field { display: flex; align-items: center; gap: 8px; }
+.cinema-field { display: flex; align-items: center; gap: 6px; }
 .cinema-field label {
   font-family: 'STKaiti', 'KaiTi', '楷体', 'Kaiti SC', serif;
   color: #000;
   font-weight: 700;
-  font-size: clamp(12px, 3vw, 15px);
-  width: 3.4em;
+  font-size: clamp(11px, 2.8vw, 13px);
+  width: 3em;
   flex-shrink: 0;
   text-align: right;
 }
 .cinema-field input {
   flex: 1;
-  background: #fff;
-  border: 1px solid rgba(0,0,0,0.3);
-  border-radius: 4px;
-  padding: 6px 8px;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px solid rgba(0,0,0,0.55);
+  border-radius: 0;
+  padding: 2px 2px 3px;
   color: #000;
   font-family: 'STKaiti', 'KaiTi', '楷体', 'Kaiti SC', serif;
-  font-size: clamp(12px, 3vw, 14px);
+  font-size: clamp(11px, 2.8vw, 13px);
   outline: none;
 }
 .cinema-enter-btn {
-  margin-top: 4%;
-  padding: 8px;
-  background: #000;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
+  margin-top: 8%;
+  padding: 6px;
+  background: transparent;
+  color: #000;
+  border: 1.5px solid rgba(0,0,0,0.55);
+  border-radius: 3px;
   font-family: 'STKaiti', 'KaiTi', '楷体', 'Kaiti SC', serif;
   font-weight: 700;
-  font-size: clamp(13px, 3.4vw, 16px);
+  font-size: clamp(11px, 2.8vw, 13px);
   letter-spacing: 0.15em;
   cursor: pointer;
 }
-.cinema-hint { color: #b00000; font-size: 12px; text-align: center; min-height: 16px; margin: 4px 0 0; font-weight: 600; }
+.cinema-hint { color: #b00000; font-size: 11px; text-align: center; min-height: 14px; margin: 4px 0 0; font-weight: 600; }
 
 /* ---------- 放映厅顶部工具条(在银幕上方) ---------- */
 .cinema-topbar {
